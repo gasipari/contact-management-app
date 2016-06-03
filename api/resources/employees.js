@@ -22,6 +22,20 @@ router.get("/", function(req, res) {
     });
 });
 
+// GET /employees/:employee_id
+router.get("/:employee_id", function(req, res) {
+
+    // query mongo to retrieve one single employees
+    Employee.findById(req.params.employee_id, function (err, employee) {
+        // check for Error
+        if (err) res.send(err);
+
+        //if no error, returns the requested employee
+        res.json(employee);
+    });
+});
+
+
 // POST /employees
 router.post("/", function(req, res) {
 
