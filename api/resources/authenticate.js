@@ -36,7 +36,7 @@ router.post("/", function (req, res) {
                     var token = jwt.sign(
                       {_id: user._id},
                       process.env.ACCESS_TOKEN_SECRET,
-                      {expiresIn: process.env.TOKEN_EXPIRATION_SEC}
+                      {expiresIn: 3600}
                     );
                     var decoded = jwt.decode(token);
                     var token_exp = decoded.exp;

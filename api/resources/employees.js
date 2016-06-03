@@ -6,11 +6,11 @@
 var express = require("express");
 var router = express.Router();
 var Employee = require("../models/employee");
-
+var verify = require("../token-verify");
 // route to manage employees
 
 // GET /employees
-router.get("/", function(req, res) {
+router.get("/", verify, function(req, res) {
 
     // query mongo to retrieve all employees
     Employee.find(function (err, employees) {
@@ -23,7 +23,7 @@ router.get("/", function(req, res) {
 });
 
 // GET /employees/:employee_id
-router.get("/:employee_id", function(req, res) {
+router.get("/:employee_id", verify, function(req, res) {
 
     // query mongo to retrieve one single employee
     Employee.findById(req.params.employee_id, function (err, employee) {
@@ -36,7 +36,7 @@ router.get("/:employee_id", function(req, res) {
 });
 
 // PUT /employees/:employee_id
-router.put("/:employee_id", function(req, res) {
+router.put("/:employee_id", verify, function(req, res) {
 
     // query mongo to retrieve one single employee
     Employee.findById(req.params.employee_id, function (err, employee) {
@@ -60,7 +60,7 @@ router.put("/:employee_id", function(req, res) {
 });
 
 // DELETE /employees/:employee_id
-router.delete("/:employee_id", function(req, res) {
+router.delete("/:employee_id", verify, function(req, res) {
 
     // query mongo to remove one single employee
     Employee.remove({_id: req.params.employee_id}, function (err, employee) {
@@ -73,7 +73,7 @@ router.delete("/:employee_id", function(req, res) {
 });
 
 // POST /employees
-router.post("/", function(req, res) {
+router.post("/", verify, function(req, res) {
 
     // create an employee
     var employee = new Employee();
