@@ -1,22 +1,41 @@
 // import libs
 var express = require("express");
 var bodyParser = require("body-parser");
+var helmet = require("helmet");
+var morgan = require("morgan");
+var api = require("./api/resources");
+
+
+// CONFIG ====
+// If undefined in the process load local file
+if(!process.env.ACCESS_TOKEN_SECRET) {
+    /*eslint no-unused-vars: 0*/
+    var env = require("./env.js");
+}
+// set the port
+const PORT = process.env.PORT;
+
+// connect to MongoDB
+var mongoose = require("mongoose");
+mongoose.connect(process.env.MONGOOSE_URI);
 
 // create the server
 var app = express();
 
-// setup bodyParser so that we get data from POST requests
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+// add security middleware
+app.use(helmet());
 
-// API routes
+// use morgan to log all requests to the console
+app.use(morgan("dev"));
 
-// create instance of express router
-var router = express.Router();
+// API ====
+// setup bodyParser for POST requests
+app.use(bodyParser.json({limit : "100kb"}));
 
-// set the port
-const PORT = process.env.PORT || 3000;
+// register API routes ====
+app.use("/api", api);
 
+// CLIENT ====
 // serving client
 app.use(express.static("public"));
 

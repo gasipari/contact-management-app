@@ -1,5 +1,8 @@
+/**
+ * User Model
+ *
+ */
 
-// USER Model
 var mongoose = require("mongoose");
 var bcrypt = require("bcryptjs");
 var Schema = mongoose.Schema;
@@ -18,6 +21,7 @@ var UserSchema = new Schema({
     }
 });
 
+//
 UserSchema.pre("save", function (next) {
     var user = this;
     if (this.isModified("password") || this.isNew) {

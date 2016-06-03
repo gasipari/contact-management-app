@@ -1,4 +1,7 @@
-// Utility to create an admin user in DB
+/**
+ * Utility to create an admin user in DB.
+ *
+ */
 var path = require("path"),
     User = require(path.join(__dirname, "models", "user.js")),
     mongoose_uri = process.env.MONGOOSE_URI || "localhost:27017/contact-management-api";
@@ -22,6 +25,8 @@ console.log("Creating a new user in Mongo");
 // instantiate mongoose
 var mongoose = require("mongoose");
 mongoose.set("debug", true);
+
+// connect to mongo
 mongoose.connect(mongoose_uri);
 mongoose.connection.on("error", function () {
     console.log("Mongoose connection error", arguments);
