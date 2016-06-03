@@ -11,7 +11,15 @@ var Employee = require("../models/employee");
 
 // GET /employees
 router.get("/", function(req, res) {
-    res.json({ message: "employees list here" });
+
+    // query mongo to retrieve all employees
+    Employee.find(function (err, employees) {
+        // check for Error
+        if (err) res.send(err);
+
+        //if no error, returns the list of all employees
+        res.json(employees);
+    });
 });
 
 // POST /employees
@@ -29,7 +37,7 @@ router.post("/", function(req, res) {
     // save employee to DB
     employee.save(function(err) {
         if (err) res.send(err);
-        // if there successfully saved
+        // if successfully saved
         res.json({ message: "Employee with ID: " + employee._id + " has been created"});
     });
 });
