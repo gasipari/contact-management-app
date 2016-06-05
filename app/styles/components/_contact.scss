@@ -1,0 +1,21 @@
+.contact {
+  align-items: center;
+  border-bottom: 1px solid $light-grey-border;
+  cursor: pointer;
+  display: flex;
+  padding: 0.5rem;
+  transition: background .3s ease;
+
+  span {
+    width: 25%;
+    border: none;
+  }
+
+  &:hover {
+    background: #f0f0f0;
+  }
+}
+
+.contact__search {
+  margin: 1rem;
+}

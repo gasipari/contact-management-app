@@ -28,7 +28,8 @@ module.exports = {
             Navigation: "app/components/Navigation.jsx",
             ContactList: "app/components/ContactList.jsx",
             ContactHome: "app/components/ContactHome.jsx",
-            ContactSearch: "app/components/ContactSearch.jsx"
+            ContactSearch: "app/components/ContactSearch.jsx",
+            Contact: "app/components/Contact.jsx"
         },
         extensions: ["", ".js", ".jsx"]
     },

@@ -1,5 +1,5 @@
 import React from "react";
-
+import Contact from "Contact";
 
 const ContactList = React.createClass({
 
@@ -7,9 +7,12 @@ const ContactList = React.createClass({
     getDefaultProps: function () {
         return {
             contacts: [
-      {name: "James Bond", position: "CEO", phone: "123-345-6789", email: "james.bond@abcd.com"},
-      {name: "Bill Gate", position: "Founder", phone: "123-345-6789", email: "james.bond@abcd.com"},
-      {name: "James Bond", position: "CEO", phone: "123-345-6789", email: "james.bond@abcd.com"}
+    {id:"11", name: "James Bond", position: "CEO", phone: "123-345-6789",
+      email: "james.bond@abcd.com"},
+    {id:"12", name: "Bill Gate", position: "Founder", phone: "123-345-6789",
+      email: "james.bond@abcd.com"},
+    {id:"13", name: "James Bond", position: "CEO", phone: "123-345-6789",
+      email: "james.bond@abcd.com"}
             ]
         };
     },
@@ -23,7 +26,9 @@ const ContactList = React.createClass({
             }
             return contacts.map((contact) => {
                 return (
-                <span key={contact.name}>{contact.name}</span>
+                <Contact key={contact.id}
+                  name={contact.name} position={contact.position}
+                  phone={contact.phone} email={contact.email}/>
                 );
             });
         };
