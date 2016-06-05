@@ -5,12 +5,19 @@ const Contact = React.createClass({
     render: function () {
         const {name, position, phone, email} = this.props;
         return (
+    <div>
       <div className="contact">
-        <span className="contact">{name}</span>
-        <span className="contact">{position}</span>
-        <span className="contact">{phone}</span>
-        <span className="contact">{email}</span>
+        <span>{name}</span>
+        <span>{position}</span>
+        <span>{phone}</span>
+        <span>{email}</span>
+        <div className="contact__actions">
+          <i className="fi-pencil"></i>
+          <i className="fi-trash"></i>
+        </div>
       </div>
+
+    </div>
     );
     }
 });

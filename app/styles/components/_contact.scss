@@ -7,15 +7,31 @@
   transition: background .3s ease;
 
   span {
-    width: 25%;
+    width: 23.5%;
     border: none;
+  }
+
+  > :last-child {
+    width: 6%;
   }
 
   &:hover {
     background: #f0f0f0;
+
+    div.contact__actions {
+      display: block;
+    }
   }
 }
 
 .contact__search {
   margin: 1rem;
+}
+
+.contact__actions {
+  display: none;
+
+  i {
+    padding: 0.4rem;
+  }
 }
