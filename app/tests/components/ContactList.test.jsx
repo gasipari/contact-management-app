@@ -5,13 +5,13 @@ import TestUtils from "react-addons-test-utils";
 import ContactList from "ContactList";
 import Contact from "Contact";
 
-describe("ContactList", () => {
+describe("ContactList compoment", () => {
     let contactList = TestUtils.renderIntoDocument(<ContactList/>);
     let contacts = [
     {_id:"1", name: "James Bond", position: "CEO", phone: "123-345-6789",
       email: "james.bond@abcd.com"},
 
-    {id:"2", name: "Bill Gate", position: "Founder", phone: "123-345-6789",
+    {_id:"2", name: "Bill Gate", position: "Founder", phone: "123-345-6789",
       email: "james.bond@abcd.com"}
     ];
 
