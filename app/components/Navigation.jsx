@@ -1,8 +1,16 @@
 import React from "react";
 import {Link} from "react-router";
+import AuthService from "AuthService";
 
-const Navigation = () => {
-    return (
+const Navigation = React.createClass({
+
+    logout() {
+        if (AuthService.loggedIn) {
+            AuthService.logout();
+        }
+    },
+    render() {
+        return (
   <div>
     <div className="top-bar">
       <div className="top-bar-left">
@@ -15,13 +23,18 @@ const Navigation = () => {
       <div className="top-bar-right">
         <ul className="menu">
           <li>
-            <Link to="/#" activeClassName="active-link">Logout</Link>
+              {AuthService.loggedIn() ? (
+                <Link to="/login" onClick={this.logout}>Log out</Link>
+              ) : (
+                <Link to="/login">Sign in</Link>
+              )}
           </li>
       </ul>
       </div>
     </div>
   </div>
-);
-};
+      );
+    }
+});
 
 module.exports = Navigation;

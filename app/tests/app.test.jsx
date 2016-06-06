@@ -6,3 +6,5 @@ describe("App", () => {
         expect(5).toBe(5);
     });
 });
+
+// TODO: add unit tests for contact components

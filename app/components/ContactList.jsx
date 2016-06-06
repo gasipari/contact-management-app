@@ -30,7 +30,7 @@ const ContactList = React.createClass({
               component.setState({
                   contacts: response
               });
-              console.log(response);
+              //console.log(response);
           }, function(error) {
               console.log(error);
           });
