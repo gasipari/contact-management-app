@@ -23,6 +23,13 @@ Start express
 
 Open the browser at http://localhost:3000/
 
+## Testing
+Run unit tests
+
+	$ npm test
+
+Runs test on all *test.js* under app/tests directory.
+
 ## Linting
 
 	$ npm run lint
