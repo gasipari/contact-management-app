@@ -13,6 +13,10 @@ First start mongo
 
 	$ mongod
 
+Create an admin username && password
+
+		$ node api/create-user.js **username** **password**
+
 Start node/express
 
 	$ npm start
