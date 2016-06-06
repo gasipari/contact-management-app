@@ -25,7 +25,13 @@
 }
 
 .contact__search {
+  display: flex;
+  justify-content: center;
   margin: 1rem;
+
+  > :last-child {
+    margin-left: 8rem;
+  }
 }
 
 .contact__actions {
@@ -33,5 +39,14 @@
 
   i {
     padding: 0.4rem;
+  }
+}
+
+.contact__edit__controls {
+  display: flex;
+  justify-content: center;
+
+  > :first-child {
+    margin-right: 1.5rem;
   }
 }

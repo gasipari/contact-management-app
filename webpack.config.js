@@ -5,6 +5,7 @@ module.exports = {
     entry: [
         "script!jquery/dist/jquery.min.js",
         "script!foundation-sites/dist/foundation.min.js",
+        "script!foundation-sites/dist/plugins/foundation.tooltip.js",
         "./app/app.jsx"
     ],
     externals: {
@@ -29,7 +30,8 @@ module.exports = {
             ContactList: "app/components/ContactList.jsx",
             ContactHome: "app/components/ContactHome.jsx",
             ContactSearch: "app/components/ContactSearch.jsx",
-            Contact: "app/components/Contact.jsx"
+            Contact: "app/components/Contact.jsx",
+            ContactEdit: "app/components/ContactEdit.jsx"
         },
         extensions: ["", ".js", ".jsx"]
     },
@@ -42,6 +44,10 @@ module.exports = {
                 },
                 test: /\.jsx?$/,
                 exclude: /(node_modules|bower_components)/
+            },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
+                loader: "file?name=fonts/[name].[ext]"
             }
         ]
     },

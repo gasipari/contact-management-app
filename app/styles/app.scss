@@ -4,6 +4,7 @@
 @import "base/foundation-settings";
 @import "foundation";
 @include foundation-everything;
+@import "vendor/foundation-icons";
 
 // Components
 @import "components/navigation";

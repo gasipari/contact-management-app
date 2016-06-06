@@ -5,7 +5,7 @@ import ContactSearch from "ContactSearch";
 const ContactHome = () => {
     return (
   <div>
-    <div className="colum small-centered medium-6 large-4">
+    <div className="colum small-centered medium-8 large-6">
     <ContactSearch />
     </div>
     <ContactList />

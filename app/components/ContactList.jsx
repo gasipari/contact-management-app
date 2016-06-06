@@ -7,11 +7,11 @@ const ContactList = React.createClass({
     getDefaultProps: function () {
         return {
             contacts: [
-    {id:"11", name: "James Bond", position: "CEO", phone: "123-345-6789",
+    {id:"1", name: "James Bond", position: "CEO", phone: "123-345-6789",
       email: "james.bond@abcd.com"},
-    {id:"12", name: "Bill Gate", position: "Founder", phone: "123-345-6789",
+    {id:"2", name: "Bill Gate", position: "Founder", phone: "123-345-6789",
       email: "james.bond@abcd.com"},
-    {id:"13", name: "James Bond", position: "CEO", phone: "123-345-6789",
+    {id:"3", name: "James Bond", position: "CEO", phone: "123-345-6789",
       email: "james.bond@abcd.com"}
             ]
         };
@@ -26,9 +26,7 @@ const ContactList = React.createClass({
             }
             return contacts.map((contact) => {
                 return (
-                <Contact key={contact.id}
-                  name={contact.name} position={contact.position}
-                  phone={contact.phone} email={contact.email}/>
+                <Contact key={contact.id} contact={contact}/>
                 );
             });
         };
