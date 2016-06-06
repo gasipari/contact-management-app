@@ -17,7 +17,7 @@ Create an admin username && password
 
 		$ node api/create-user.js **username** **password**
 
-Start node/express
+Start express
 
 	$ npm start
 
