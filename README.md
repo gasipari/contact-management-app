@@ -17,6 +17,10 @@ Start node/express
 
 	$ npm start
 
+Open the browser at http://localhost:3000/
+
+		$ npm start
+
 ## Linting
 
 	$ npm run lint
