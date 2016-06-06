@@ -23,15 +23,13 @@ module.exports = {
     },
     resolve: {
         root: __dirname,
+        modulesDirectories: [
+            "node_modules",
+            "./app/components",
+            "./app/services"
+        ],
         alias: {
-            applicationStyles: "app/styles/app.scss",
-            Main: "app/components/Main.jsx",
-            Navigation: "app/components/Navigation.jsx",
-            ContactList: "app/components/ContactList.jsx",
-            ContactHome: "app/components/ContactHome.jsx",
-            ContactSearch: "app/components/ContactSearch.jsx",
-            Contact: "app/components/Contact.jsx",
-            ContactEdit: "app/components/ContactEdit.jsx"
+            applicationStyles: "app/styles/app.scss"
         },
         extensions: ["", ".js", ".jsx"]
     },

@@ -1,6 +1,7 @@
 import React from "react";
 import {ModalContainer, ModalDialog} from "react-modal-dialog";
-
+import HttpService from "HttpService";
+import ApiConfig from "ApiConfig";
 
 const ContactEdit = React.createClass({
 
@@ -15,13 +16,49 @@ const ContactEdit = React.createClass({
     },
     handleFormSubmit: function (e) {
         e.preventDefault();
+        // grab employee info
+        let employee = {};
+        employee.name = this.name.value;
+        employee.position = this.position.value;
+        employee.phone = this.phone.value;
+        employee.email = this.email.value;
+
+        let component = this;
+        if (this.props.contact) {
+          // update employee
+            HttpService.put(ApiConfig.employeeEndpoint + this.props.contact._id,
+             employee, localStorage.token)
+          .then(function(response) {
+              console.log(response);
+              component.props.onCloseUpdate();
+          }, function(error) {
+              console.log(error);
+          });
+        } else {
+            // create new employee
+            HttpService.post(ApiConfig.employeeEndpoint,
+             employee, localStorage.token)
+          .then(function(response) {
+              console.log(response);
+              component.props.onCloseUpdate();
+          }, function(error) {
+              console.log(error);
+          });
+        }
     },
     render: function () {
+        let renderTitle = () => {
+            if (this.props.contact) {
+                return (<h4>Edit employee</h4>);
+            } else {
+                return (<h4>Add new employee</h4>);
+            }
+        };
         return (
 <div>
   <ModalContainer onClose={this.props.onClose}>
   <ModalDialog onClose={this.props.onClose} style={{width: "50%"}}>
-    <h3>Edit contact</h3>
+    {renderTitle()}
     <form onSubmit={this.handleFormSubmit}>
       <div className="row">
         <div className="small-3 columns">

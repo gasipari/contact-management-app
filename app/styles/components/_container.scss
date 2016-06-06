@@ -9,3 +9,14 @@
     border-bottom: none;
   }
 }
+
+.container__message {
+  padding: 1rem;
+}
+
+.container__controls {
+  margin-right: 1rem;
+  padding: 1rem;
+  position: absolute;
+  right: 0
+}
