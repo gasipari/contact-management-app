@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "karma start",
-    "start": "nodemon index.js",
+    "start": "webpack && nodemon index.js",
     "lint": "node ./node_modules/eslint/bin/eslint.js --fix --ext .jsx --ext .js app api karma.conf.js server.js webpack.config.js"
   },
   "author": "Marius Muk",
