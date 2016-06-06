@@ -1,4 +1,7 @@
 # Contact Management
+
+A simple web application to maintain employee contact information for several employers.
+
 ### Install all dependencies
 
 Using [npm](https://www.npmjs.com/):
