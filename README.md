@@ -15,7 +15,7 @@ First start mongo
 
 Create an admin username && password
 
-		$ node api/create-user.js **username** **password**
+	$ node api/create-user.js **username** **password**
 
 Start express
 
@@ -28,7 +28,7 @@ Run unit tests
 
 	$ npm test
 
-Runs test on all *test.js* under app/tests directory.
+Runs test on all test.js files under app/tests directory.
 
 ## Linting
 
