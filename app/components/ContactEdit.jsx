@@ -1,5 +1,6 @@
 import React from "react";
 import {ModalContainer, ModalDialog} from "react-modal-dialog";
+import Validator from "validator";
 import HttpService from "HttpService";
 import ApiConfig from "ApiConfig";
 
@@ -16,34 +17,45 @@ const ContactEdit = React.createClass({
     },
     handleFormSubmit: function (e) {
         e.preventDefault();
-        // grab employee info
-        let employee = {};
-        employee.name = this.name.value;
-        employee.position = this.position.value;
-        employee.phone = this.phone.value;
-        employee.email = this.email.value;
+        // grab user details from the DOM
+        const name = this.name.value;
+        const position = this.position.value;
+        const phone = this.phone.value;
+        const email = this.email.value;
 
-        let component = this;
-        if (this.props.contact) {
-          // update employee
-            HttpService.put(ApiConfig.employeeEndpoint + this.props.contact._id,
-             employee, localStorage.token)
-          .then(function(response) {
-              console.log(response);
-              component.props.onCloseUpdate();
-          }, function(error) {
-              console.log(error);
-          });
+        // check if form is valid
+        if (name && position && phone && Validator.isEmail(email)) {
+          // grab employee info
+            let employee = {};
+            employee.name = name;
+            employee.position = position;
+            employee.phone = phone;
+            employee.email = email;
+
+            let component = this;
+            if (this.props.contact) {
+              // update employee
+                HttpService.put(ApiConfig.employeeEndpoint + this.props.contact._id,
+                 employee, localStorage.token)
+              .then(function(response) {
+                  console.log(response);
+                  component.props.onCloseUpdate();
+              }, function(error) {
+                  console.log(error);
+              });
+            } else {
+                // create new employee
+                HttpService.post(ApiConfig.employeeEndpoint,
+                 employee, localStorage.token)
+              .then(function(response) {
+                  console.log(response);
+                  component.props.onCloseUpdate();
+              }, function(error) {
+                  console.log(error);
+              });
+            }
         } else {
-            // create new employee
-            HttpService.post(ApiConfig.employeeEndpoint,
-             employee, localStorage.token)
-          .then(function(response) {
-              console.log(response);
-              component.props.onCloseUpdate();
-          }, function(error) {
-              console.log(error);
-          });
+            alert("Invalid form");
         }
     },
     render: function () {

@@ -15,20 +15,26 @@ const Login = withRouter(
           // grab user credentials from the DOM
           const username = this.refs.username.value;
           const password = this.refs.password.value;
-          // auth request to API
-          AuthService.login(username, password, (loggedIn) => {
-              if (!loggedIn){
-                  return this.setState({ error: true });
-              }
-              const { location } = this.props;
-              // Check the browser history and navigate to the next path in the router
-              if (location.state && location.state.nextPathname) {
-                  this.props.router.replace(location.state.nextPathname);
-              } else {
-                // If no path in the location, go to root path
-                  this.props.router.replace("/");
-              }
-          });
+
+          // check if form is valid
+          if (username && password) {
+              // auth request to API
+              AuthService.login(username, password, (loggedIn) => {
+                  if (!loggedIn){
+                      return this.setState({ error: true });
+                  }
+                  const { location } = this.props;
+                  // Check the browser history and navigate to the next path in the router
+                  if (location.state && location.state.nextPathname) {
+                      this.props.router.replace(location.state.nextPathname);
+                  } else {
+                      // If no path in the location, go to root path
+                      this.props.router.replace("/");
+                  }
+              });
+          } else {
+              alert("Invalid form");
+          }
       },
       render() {
           return (
