@@ -11,3 +11,19 @@ export let addContact = (contact) => {
         contact
     };
 };
+
+
+export let editContact = (contact) => {
+    return {
+        type: "EDIT_CONTACT",
+        contact
+    };
+};
+
+
+export let deleteContact = (id) => {
+    return {
+        type: "DELETE_CONTACT",
+        id
+    };
+};
