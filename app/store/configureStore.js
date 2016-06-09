@@ -1,5 +1,7 @@
 import { createStore, compose, combineReducers, applyMiddleware} from "redux";
 import {contactsReducer} from "reducers";
+
+// middleware that allows to write action creators that return a function instead of an action
 import thunk from "redux-thunk";
 
 
