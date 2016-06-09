@@ -1,5 +1,6 @@
-import { createStore, compose, combineReducers} from "redux";
+import { createStore, compose, combineReducers, applyMiddleware} from "redux";
 import {contactsReducer} from "reducers";
+import thunk from "redux-thunk";
 
 
 export let configure = () => {
@@ -8,5 +9,8 @@ export let configure = () => {
     });
 
     let store = createStore(reducer,
-  compose(window.devToolsExtension ? window.devToolsExtension() : f => f));// (f = {return f;})
+  compose(applyMiddleware(thunk),
+  window.devToolsExtension ? window.devToolsExtension() : f => f));// (f = {return f;})
+
+    return store;
 };

@@ -1,16 +1,19 @@
 import React from "react";
+import {connect} from "react-redux";
 import Contact from "Contact";
 import ContactEdit from "ContactEdit";
-import HttpService from "HttpService";
-import ApiConfig from "ApiConfig";
+import {fetchContacts} from "actions";
 
 const ContactList = React.createClass({
 
     getInitialState() {
         return {
-            isShowingModal: false,
-            contacts: []
+            isShowingModal: false
         };
+    },
+    componentDidMount() {
+        // get employees
+        this.props.dispatch(fetchContacts());
     },
     handleAdd: function () {
         this.setState({isShowingModal: true});
@@ -22,25 +25,8 @@ const ContactList = React.createClass({
         this.setState({isShowingModal: false});
         this.fetchEmployees();
     },
-    //
-    fetchEmployees: function () {
-        let component = this;
-        HttpService.get(ApiConfig.employeeEndpoint, localStorage.token)
-          .then(function(response) {
-              component.setState({
-                  contacts: response
-              });
-              //console.log(response);
-          }, function(error) {
-              console.log(error);
-          });
-    },
-    componentDidMount() {
-        // get employees
-        this.fetchEmployees();
-    },
     render: function () {
-        const {contacts} = this.state;
+        const {contacts} = this.props.contacts;
         let renderContacts = () => {
             if (contacts.length === 0) {
                 return (
@@ -71,4 +57,10 @@ const ContactList = React.createClass({
     }
 });
 
-module.exports = ContactList;
+module.exports = connect(
+  (state) => {
+      return {
+          contacts: state.contacts
+      };
+  }
+)(ContactList);
