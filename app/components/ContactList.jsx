@@ -4,7 +4,7 @@ import Contact from "Contact";
 import ContactEdit from "ContactEdit";
 import {fetchContacts} from "actions";
 
-const ContactList = React.createClass({
+export const ContactList = React.createClass({
 
     getInitialState() {
         return {
@@ -57,7 +57,7 @@ const ContactList = React.createClass({
     }
 });
 
-module.exports = connect(
+export default connect(
   (state) => {
       return {
           contacts: state.contacts

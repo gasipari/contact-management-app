@@ -17,7 +17,11 @@ const PORT = process.env.PORT;
 
 // connect to MongoDB
 var mongoose = require("mongoose");
-mongoose.connect(process.env.MONGOOSE_URI);
+mongoose.connect(process.env.MONGOOSE_URI, function (err) {
+    if (err) {
+        console.log(err);
+    }
+});
 
 // create the server
 var app = express();

@@ -3,12 +3,12 @@ import {contactsReducer} from "reducers";
 import thunk from "redux-thunk";
 
 
-export let configure = () => {
+export let configure = (initialState = {}) => {
     let reducer = combineReducers({
         contacts: contactsReducer
     });
 
-    let store = createStore(reducer,
+    let store = createStore(reducer, initialState,
   compose(applyMiddleware(thunk),
   window.devToolsExtension ? window.devToolsExtension() : f => f));// (f = {return f;})
 

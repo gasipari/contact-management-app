@@ -1,8 +1,9 @@
 import React from "react";
 import ContactEdit from "ContactEdit";
 import ContactDelete from "ContactDelete";
+import {connect} from "react-redux";
 
-const Contact = React.createClass({
+export const Contact = React.createClass({
 
     getInitialState() {
         return {
@@ -56,5 +57,4 @@ const Contact = React.createClass({
     );
     }
 });
-
-module.exports = Contact;
+export default connect()(Contact);

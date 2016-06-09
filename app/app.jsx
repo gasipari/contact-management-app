@@ -28,6 +28,7 @@ function requireAuth(nextState, replace) {
         });
     }
 }
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={hashHistory}>
@@ -39,11 +40,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("app")
 );
-
-
-// <Router history={hashHistory}>
-// <Route path="/" component={Main}>
-//   <Route path="login" component={Login} />
-//   <IndexRoute component={ContactHome} onEnter={requireAuth} />
-// </Route>
-// </Router>
