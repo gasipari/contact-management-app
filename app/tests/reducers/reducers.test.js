@@ -26,5 +26,16 @@ describe("Redux Reducers", () => {
             expect(result.isFetching).toEqual(false);
             expect(result.contacts).toEqual(contacts);
         });
+
+        it("should edit current contact item", () => {
+            let contact = {name: "james"};
+            let action = {
+                type: "EDIT_CONTACT",
+                contact
+            };
+            let result = contactsReducer(df({}), df(action));
+
+            expect(result.contact).toEqual(contact);
+        });
     });
 });
