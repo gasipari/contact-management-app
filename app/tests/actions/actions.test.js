@@ -28,11 +28,10 @@ describe("Redux Actions", () => {
 
         it("should generate addContact action", () => {
             let action = {
-                type: "ADD_CONTACT",
-                contact: {name: "james"}
+                type: "ADD_CONTACT"
             };
             // call the generator
-            let response = addContact(action.contact);
+            let response = addContact();
 
             expect(response).toEqual(action);
         });

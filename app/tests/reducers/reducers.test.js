@@ -37,5 +37,22 @@ describe("Redux Reducers", () => {
 
             expect(result.contact).toEqual(contact);
         });
+
+        it("should add new contact item", () => {
+            let contact = {
+                id: "",
+                name: "",
+                position: "",
+                phone: "",
+                email: ""
+            };
+            let action = {
+                type: "ADD_CONTACT",
+                contact
+            };
+            let result = contactsReducer(df({}), df(action));
+
+            expect(result.contact).toEqual(contact);
+        });
     });
 });

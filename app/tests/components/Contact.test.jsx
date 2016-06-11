@@ -16,7 +16,7 @@ describe("Contact component", () => {
             _id:"1", name: "James Bond", position: "CEO", phone: "123-345-6789",
             email: "james.bond@abcd.com"
         };
-        let contact = TestUtils.renderIntoDocument(<Contact {...contactObj}/>);
+        let contact = TestUtils.renderIntoDocument(<Contact contact={contactObj}/>);
         var $el = $(ReactDOM.findDOMNode(contact));
         var nameText = $el.find("div span:first-child").text();
         var positionText = $el.find("div span:nth-child(2)").text();
