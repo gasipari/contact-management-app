@@ -35,6 +35,7 @@ export let completeContactsFetch = (contacts) => {
     };
 };
 
+// action creators that return a function instead of an action >> redux-thunk
 export let fetchContacts = () => {
     return (dispatch) => {
         dispatch(startContactsFetch());
@@ -60,6 +61,7 @@ export let completeContactEdit = (message) => {
     };
 };
 
+// action creators that return a function instead of an action >> redux-thunk
 export let sendContactUpdate = (employee) => {
     return (dispatch) => {
         dispatch(startContactEdit());
@@ -87,6 +89,7 @@ export let completeContactAdd = (message) => {
     };
 };
 
+// action creators that return a function instead of an action >> redux-thunk
 export let sendContactAdd = (employee) => {
     return (dispatch) => {
         dispatch(startContactAdd());
@@ -114,6 +117,7 @@ export let completeContactDelete = (message) => {
     };
 };
 
+// action creators that return a function instead of an action >> redux-thunk
 export let sendContactDelete = (employeeId) => {
     return (dispatch) => {
         dispatch(startContactDelete());
