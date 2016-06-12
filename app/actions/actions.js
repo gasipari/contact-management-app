@@ -100,3 +100,30 @@ export let sendContactAdd = (employee) => {
           });
     };
 };
+
+export let startContactDelete = () => {
+    return {
+        type: "START_CONTACT_DELETE"
+    };
+};
+
+export let completeContactDelete = (message) => {
+    return {
+        type: "COMPLETE_CONTACT_DELETE",
+        message
+    };
+};
+
+export let sendContactDelete = (employeeId) => {
+    return (dispatch) => {
+        dispatch(startContactDelete());
+        HttpService.delete(ApiConfig.employeeEndpoint + employeeId, localStorage.token)
+          .then(function(response) {
+              dispatch(completeContactDelete(response));
+              // reload data
+              dispatch(fetchContacts());
+          }, function(error) {
+              console.log(error);
+          });
+    };
+};

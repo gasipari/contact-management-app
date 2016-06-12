@@ -2,7 +2,7 @@ import React from "react";
 import ContactEdit from "ContactEdit";
 import ContactDelete from "ContactDelete";
 import {connect} from "react-redux";
-import {editContact} from "actions";
+import {editContact, deleteContact} from "actions";
 
 export const Contact = React.createClass({
 
@@ -20,19 +20,13 @@ export const Contact = React.createClass({
     handleDelete: function (e) {
         console.log("Delete employee ID: " + e.target.parentElement.id);
         this.setState({isShowingModalDelete: true});
+        this.props.dispatch(deleteContact(this.props.contact._id));
     },
     handleClose: function () {
         this.setState({
             isShowingModal: false,
             isShowingModalDelete: false
         });
-    },
-    componentWillReceiveProps(nextProps) {
-        console.log("state changed" + nextProps);
-    },
-    handleCloseUpdate: function () {
-        this.setState({isShowingModal: false});
-        this.props.onUpdate();
     },
     render: function () {
         const {contact} = this.props;
@@ -54,7 +48,7 @@ export const Contact = React.createClass({
       }
       {// delete modal
         this.state.isShowingModalDelete &&
-        <ContactDelete onClose={this.handleClose} onCloseUpdate={this.handleCloseUpdate}/>
+        <ContactDelete onClose={this.handleClose}/>
       }
     </div>
     );
