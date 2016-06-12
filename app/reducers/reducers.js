@@ -24,6 +24,18 @@ export let contactsReducer = (state = {isFetching: false, contacts: [],
             isFetching: false,
             message: action.message
         };
+    case "START_CONTACT_ADD":
+        return {
+            ...state,
+            isFetching: true,
+            message: {message: "start Contact Add"}
+        };
+    case "COMPLETE_CONTACT_ADD":
+        return {
+            ...state,
+            isFetching: false,
+            message: action.message
+        };
     case "EDIT_CONTACT":
         return {
             ...state,
