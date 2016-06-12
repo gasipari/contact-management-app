@@ -13,6 +13,6 @@ export let configure = (initialState = {}) => {
     let store = createStore(reducer, initialState,
   compose(applyMiddleware(thunk),
   window.devToolsExtension ? window.devToolsExtension() : f => f));// (f = {return f;})
-
+  // window.devToolsExtension allows us to debug redux using Chrome's Redux DevTools
     return store;
 };
