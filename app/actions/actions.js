@@ -60,12 +60,14 @@ export let completeContactEdit = (message) => {
     };
 };
 
-export let sendContactUpdate = (id) => {
+export let sendContactUpdate = (employee) => {
     return (dispatch) => {
-        dispatch(startContactEdit());
-        HttpService.get(ApiConfig.employeeEndpoint + id, localStorage.token)
+        //dispatch(startContactEdit());
+        HttpService.put(ApiConfig.employeeEndpoint + employee.id, employee, localStorage.token)
           .then(function(response) {
               dispatch(completeContactEdit(response));
+              // reload data
+              dispatch(fetchContacts());
           }, function(error) {
               console.log(error);
           });

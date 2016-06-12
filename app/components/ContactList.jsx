@@ -2,7 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import Contact from "Contact";
 import ContactEdit from "ContactEdit";
-import {fetchContacts} from "actions";
+import {fetchContacts, addContact} from "actions";
 
 export const ContactList = React.createClass({
 
@@ -17,6 +17,7 @@ export const ContactList = React.createClass({
     },
     handleAdd: function () {
         this.setState({isShowingModal: true});
+        this.props.dispatch(addContact());
     },
     handleClose: function () {
         this.setState({isShowingModal: false});
@@ -35,7 +36,7 @@ export const ContactList = React.createClass({
             }
             return contacts.map((contact) => {
                 return (
-                <Contact key={contact._id} contact={contact} onUpdate={this.fetchEmployees}/>
+                <Contact key={contact._id} contact={contact}/>
                 );
             });
         };

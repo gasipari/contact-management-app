@@ -1,10 +1,12 @@
 import React from "react";
 import {ModalContainer, ModalDialog} from "react-modal-dialog";
+import {connect} from "react-redux";
 import Validator from "validator";
 import HttpService from "HttpService";
 import ApiConfig from "ApiConfig";
+import {sendContactUpdate} from "actions";
 
-const ContactEdit = React.createClass({
+export const ContactEdit = React.createClass({
 
     //
     componentDidMount(){
@@ -31,19 +33,14 @@ const ContactEdit = React.createClass({
             employee.position = position;
             employee.phone = phone;
             employee.email = email;
+            employee.id = this.props.contact._id;
 
             let component = this;
-            if (this.props.contact) {
-              // update employee
-                HttpService.put(ApiConfig.employeeEndpoint + this.props.contact._id,
-                 employee, localStorage.token)
-              .then(function(response) {
-                  console.log(response);
-                  component.props.onCloseUpdate();
-              }, function(error) {
-                  console.log(error);
-              });
+            if (this.props.contact._id) {
+                // update employee
+                this.props.dispatch(sendContactUpdate(employee));
             } else {
+                console.log("create");
                 // create new employee
                 HttpService.post(ApiConfig.employeeEndpoint,
                  employee, localStorage.token)
@@ -57,6 +54,8 @@ const ContactEdit = React.createClass({
         } else {
             alert("Invalid form");
         }
+        // close modal
+        this.props.onClose();
     },
     render: function () {
         let renderTitle = () => {
@@ -120,5 +119,10 @@ const ContactEdit = React.createClass({
     );
     }
 });
-
-module.exports = ContactEdit;
+export default connect(
+  (state) => {
+      return {
+          contact: state.contacts.contact
+      };
+  }
+)(ContactEdit);
