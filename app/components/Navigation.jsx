@@ -26,7 +26,7 @@ const Navigation = React.createClass({
               {AuthService.loggedIn() ? (
                 <Link to="/login" onClick={this.logout}>Log out</Link>
               ) : (
-                <Link to="/login">Sign in</Link>
+                ""
               )}
           </li>
       </ul>
