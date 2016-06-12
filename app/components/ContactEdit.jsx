@@ -2,9 +2,7 @@ import React from "react";
 import {ModalContainer, ModalDialog} from "react-modal-dialog";
 import {connect} from "react-redux";
 import Validator from "validator";
-import HttpService from "HttpService";
-import ApiConfig from "ApiConfig";
-import {sendContactUpdate} from "actions";
+import {sendContactUpdate, sendContactAdd} from "actions";
 
 export const ContactEdit = React.createClass({
 
@@ -35,21 +33,12 @@ export const ContactEdit = React.createClass({
             employee.email = email;
             employee.id = this.props.contact._id;
 
-            let component = this;
             if (this.props.contact._id) {
                 // update employee
                 this.props.dispatch(sendContactUpdate(employee));
             } else {
-                console.log("create");
                 // create new employee
-                HttpService.post(ApiConfig.employeeEndpoint,
-                 employee, localStorage.token)
-              .then(function(response) {
-                  console.log(response);
-                  component.props.onCloseUpdate();
-              }, function(error) {
-                  console.log(error);
-              });
+                this.props.dispatch(sendContactAdd(employee));
             }
         } else {
             alert("Invalid form");
