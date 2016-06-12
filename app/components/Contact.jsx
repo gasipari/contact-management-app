@@ -20,7 +20,7 @@ export const Contact = React.createClass({
     handleDelete: function (e) {
         console.log("Delete employee ID: " + e.target.parentElement.id);
         this.setState({isShowingModalDelete: true});
-        this.props.dispatch(deleteContact(this.props.contact._id));
+        this.props.dispatch(deleteContact(this.props.contact));
     },
     handleClose: function () {
         this.setState({

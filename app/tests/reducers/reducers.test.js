@@ -80,6 +80,27 @@ describe("Redux Reducers", () => {
             expect(result.message).toEqual(message);
         });
 
+        it("should start deleting contact", () => {
+            let action = {
+                type: "START_CONTACT_DELETE"
+            };
+            let result = contactsReducer(df({}), df(action));
+
+            expect(result.isFetching).toEqual(true);
+        });
+
+        it("should complete deleting contact", () => {
+            let message = {message: "contact has been deleted"};
+            let action = {
+                type: "COMPLETE_CONTACT_DELETE",
+                message
+            };
+            let result = contactsReducer(df({}), df(action));
+
+            expect(result.isFetching).toEqual(false);
+            expect(result.message).toEqual(message);
+        });
+
         it("should add new contact item", () => {
             let contact = {
                 id: "",
