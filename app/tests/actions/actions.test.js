@@ -1,8 +1,7 @@
 import expect from "expect";
 import {startContactsFetch, completeContactsFetch, startContactEdit, completeContactEdit,
-  addContact, editContact,
+  startContactAdd, completeContactAdd, addContact, editContact,
   deleteContact} from "actions";
-
 
 describe("Redux Actions", () => {
     describe("Contact Actions", () => {
@@ -48,6 +47,26 @@ describe("Redux Actions", () => {
             expect(response).toEqual(action);
         });
 
+        it("should generate startContactAdd action", () => {
+            let action = {
+                type: "START_CONTACT_ADD"
+            };
+            // call the generator
+            let response = startContactAdd();
+
+            expect(response).toEqual(action);
+        });
+
+        it("should generate completeContactAdd action", () => {
+            let action = {
+                type: "COMPLETE_CONTACT_ADD",
+                message: {message: "contact saved"}
+            };
+            // call the generator
+            let response = completeContactAdd(action.message);
+
+            expect(response).toEqual(action);
+        });
 
         it("should generate addContact action", () => {
             let action = {

@@ -62,10 +62,37 @@ export let completeContactEdit = (message) => {
 
 export let sendContactUpdate = (employee) => {
     return (dispatch) => {
-        //dispatch(startContactEdit());
+        dispatch(startContactEdit());
         HttpService.put(ApiConfig.employeeEndpoint + employee.id, employee, localStorage.token)
           .then(function(response) {
               dispatch(completeContactEdit(response));
+              // reload data
+              dispatch(fetchContacts());
+          }, function(error) {
+              console.log(error);
+          });
+    };
+};
+
+export let startContactAdd = () => {
+    return {
+        type: "START_CONTACT_ADD"
+    };
+};
+
+export let completeContactAdd = (message) => {
+    return {
+        type: "COMPLETE_CONTACT_ADD",
+        message
+    };
+};
+
+export let sendContactAdd = (employee) => {
+    return (dispatch) => {
+        dispatch(startContactAdd());
+        HttpService.post(ApiConfig.employeeEndpoint, employee, localStorage.token)
+          .then(function(response) {
+              dispatch(completeContactAdd(response));
               // reload data
               dispatch(fetchContacts());
           }, function(error) {
