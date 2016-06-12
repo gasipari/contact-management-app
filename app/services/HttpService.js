@@ -22,6 +22,8 @@ module.exports = {
                     resolve(req.response);
                 } else if (req.status == 401) {
                     reject(Error(req.statusText));
+                    // session/token expired the force login
+                    // window.location.href = "/#/login";
                 } else {
                     reject(Error("Error while fetching data"));
                 }
@@ -56,6 +58,8 @@ module.exports = {
                     resolve(req.response);
                 } else if (req.status == 401) {
                     reject(Error(req.statusText));
+                    // session/token expired the force login
+                    // window.location.href = "/#/login";
                 } else {
                     reject(Error("Error while fetching data"));
                 }
@@ -92,6 +96,8 @@ module.exports = {
                 else if (req.status == 401) {
                     console.log(req.statusText);
                     reject(Error(req.statusText));
+                    // session/token expired the force login
+                    // window.location.href = "/#/login";
                 } else {
                     reject(Error("Error while fetching data"));
                 }
@@ -126,6 +132,8 @@ module.exports = {
                 } else if (req.status == 401) {
                     console.log(req.statusText);
                     reject(Error(req.statusText));
+                    // session/token expired the force login
+                    // window.location.href = "/#/login";
                 } else {
                     reject(Error("Error while fetching data"));
                 }

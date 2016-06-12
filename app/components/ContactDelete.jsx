@@ -1,20 +1,12 @@
 import React from "react";
 import {ModalContainer, ModalDialog} from "react-modal-dialog";
-import HttpService from "HttpService";
-import ApiConfig from "ApiConfig";
+import {connect} from "react-redux";
+import {sendContactDelete} from "actions";
 
-const ContactDelete = React.createClass({
+export const ContactDelete = React.createClass({
     handleDelete: function () {
-        let component = this;
         // delete employee
-        HttpService.delete(ApiConfig.employeeEndpoint + this.props.contact._id,
-        localStorage.token)
-      .then(function(response) {
-          console.log(response);
-          component.props.onCloseUpdate();
-      }, function(error) {
-          console.log(error);
-      });
+        this.props.dispatch(sendContactDelete(this.props.contact._id));
     },
     render: function () {
         return (
@@ -35,4 +27,10 @@ const ContactDelete = React.createClass({
     }
 });
 
-module.exports = ContactDelete;
+export default connect(
+  (state) => {
+      return {
+          contact: state.contacts.contact
+      };
+  }
+)(ContactDelete);

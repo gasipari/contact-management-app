@@ -15,10 +15,10 @@ export let editContact = (contact) => {
     };
 };
 
-export let deleteContact = (id) => {
+export let deleteContact = (contact) => {
     return {
         type: "DELETE_CONTACT",
-        id
+        contact
     };
 };
 
