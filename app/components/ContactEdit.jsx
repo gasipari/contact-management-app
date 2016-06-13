@@ -48,10 +48,10 @@ export const ContactEdit = React.createClass({
     },
     render: function () {
         let renderTitle = () => {
-            if (this.props.contact.id) {
-                return (<h4>Edit employee</h4>);
-            } else {
+            if (this.props.contact.id === "") {
                 return (<h4>Add new employee</h4>);
+            } else {
+                return (<h4>Edit employee</h4>);
             }
         };
         return (
