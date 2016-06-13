@@ -1,18 +1,26 @@
 import React from "react";
+import {connect} from "react-redux";
+import {setSearchText} from "actions";
 
 const ContactSearch = React.createClass({
-    handleSearch: function () {
-        //let searchText = this.refs.searchText.value;
-        alert("This feature is currently under construction");
-    },
     render: function () {
+        const {dispatch} = this.props;
         return (
       <div className="contact__search">
-        <input type="search" ref="searchText" placeholder="Search Employee..."/>
-        <button type="button" className="button" onClick={this.handleSearch}>Search</button>
+        <input type="search" ref="searchText" placeholder="Search Employee..."
+          onChange={() => {
+              let searchText = this.refs.searchText.value;
+              dispatch(setSearchText(searchText));
+          }}/>
       </div>
     );
     }
 });
 
-module.exports = ContactSearch;
+export default connect(
+  (state) => {
+      return {
+          searchText: state.searchText
+      };
+  }
+)(ContactSearch);

@@ -26,15 +26,24 @@ export const ContactList = React.createClass({
         this.setState({isShowingModal: false});
         this.fetchEmployees();
     },
+    filterContacts: function (contacts, searchText) {
+        let filteredContacts = contacts;
+        // Filter by searchText
+        filteredContacts = filteredContacts.filter((contact) => {
+            let text = contact.name.toLowerCase();
+            return searchText.length === 0 || text.indexOf(searchText) > -1;
+        });
+        return filteredContacts;
+    },
     render: function () {
-        const {contacts} = this.props.contacts;
+        const {contacts, searchText} = this.props.contacts;
         let renderContacts = () => {
             if (contacts.length === 0) {
                 return (
                   <p className="container__message">There is currently no Employee</p>
                 );
             }
-            return contacts.map((contact) => {
+            return this.filterContacts(contacts, searchText).map((contact) => {
                 return (
                 <Contact key={contact._id} contact={contact}/>
                 );

@@ -1,6 +1,6 @@
 // reducers
 export let contactsReducer = (state = {isFetching: false, contacts: [],
-  contact:{}, message:{}}, action) => {
+  contact:{}, message:{}, searchText:""}, action) => {
     switch (action.type) {
     case "START_CONTACTS_FETCH":
         return {
@@ -10,6 +10,7 @@ export let contactsReducer = (state = {isFetching: false, contacts: [],
     case "COMPLETE_CONTACTS_FETCH":
         return {
             isFetching: false,
+            searchText: "",
             contacts: action.contacts
         };
     case "START_CONTACT_EDIT":
