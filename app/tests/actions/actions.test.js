@@ -1,7 +1,7 @@
 import expect from "expect";
 import {startContactsFetch, completeContactsFetch, startContactEdit, completeContactEdit,
   startContactAdd, completeContactAdd, startContactDelete, completeContactDelete,
-  addContact, editContact,
+  addContact, editContact, setSearchText,
   deleteContact} from "actions";
 
 describe("Redux Actions", () => {
@@ -114,12 +114,22 @@ describe("Redux Actions", () => {
         it("should generate deleteContact action", () => {
             let action = {
                 type: "DELETE_CONTACT",
-                id: "999"
+                contact: {id: "999"}
             };
             // call the generator
-            let response = deleteContact(action.id);
+            let response = deleteContact(action.contact);
 
             expect(response).toEqual(action);
+        });
+
+        it("should generate search text action", () => {
+            let action = {
+                type: "SET_SEARCH_TEXT",
+                searchText: "Some search text"
+            };
+            let result = setSearchText(action.searchText);
+
+            expect(result).toEqual(action);
         });
     });
 });
