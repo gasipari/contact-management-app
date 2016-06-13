@@ -69,6 +69,11 @@ export let contactsReducer = (state = {isFetching: false, contacts: [],
                 email: ""
             }
         };
+    case "SET_SEARCH_TEXT":
+        return {
+            ...state,
+            searchText:action.searchText
+        };
     default:
         return state;
     }

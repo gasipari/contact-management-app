@@ -117,5 +117,15 @@ describe("Redux Reducers", () => {
 
             expect(result.contact).toEqual(contact);
         });
+
+        it("should set searchText", () => {
+            let action = {
+                type: "SET_SEARCH_TEXT",
+                searchText: "james"
+            };
+            let result = contactsReducer(df(""), df(action));
+
+            expect(result.searchText).toEqual(action.searchText);
+        });
     });
 });
